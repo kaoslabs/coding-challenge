@@ -15,13 +15,15 @@ module.exports.run = function(csv){
 
 	Write your code below the comment.
 */
-		// arr = new Array();
-		// properties = new Array();
+
+// NOTE: example function string uses \n while test functions us /n
 
 		// split csv into array based on \n breaks
-		temp_csv = csv.split(/\n/);
+		temp_csv = csv.split(/\/n/);
 		// define properties based on , breaks in first line
 		properties = temp_csv[0].split(/,/);
+
+		arr = [];
 
 		// iterate remaining lines of csv
 		for(i = 1; i < temp_csv.length; i++){
