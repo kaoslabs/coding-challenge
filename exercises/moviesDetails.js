@@ -17,6 +17,7 @@ module.exports.run = async function(movies) {
 	Write your code below the comment.
 */
 
+	// declare vars
 	const axios = require('axios');
 	var arr = [],
 		promises = [];
@@ -27,17 +28,21 @@ module.exports.run = async function(movies) {
 	});
 	
 	// axios.all will keep promises in order
+	// await will wait until axios.all promise completed before returning arr
 	await axios.all(promises)
 		.then(function(results){
 			results.forEach(function(result){
+				// create object with Title, Year, Genre
 				obj = {
 					Title: result.data.Title,
 					Year: result.data.Year,
 					Genre: result.data.Genre
 				};
+				// add object to end of arr
 				arr.push(obj);
 			});
 		});
-	// TODO: don't return arr until all async functions finished!!!
+
+	// return arr
 	return arr;
 };
