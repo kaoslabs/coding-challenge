@@ -10,5 +10,16 @@ Examples:
 Write your code below the comment.
 
 */
+	// assign temportary values for a, b, c
+	temp_a = a;
+	temp_b = b;
+	temp_c = c;
 
+	// compare given a, b, c and set temp values to 0 if there is a match
+	if (a == b) temp_a = temp_b = 0;
+	if (a == c) temp_a = temp_c = 0;
+	if (b == c) temp_b = temp_c = 0;
+
+	// return sum of temp values
+	return temp_a + temp_b + temp_c;
 };
