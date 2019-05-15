@@ -15,5 +15,26 @@ module.exports.run = function(csv){
 
 	Write your code below the comment.
 */
+		// arr = new Array();
+		// properties = new Array();
 
+		// split csv into array based on \n breaks
+		temp_csv = csv.split(/\n/);
+		// define properties based on , breaks in first line
+		properties = temp_csv[0].split(/,/);
+
+		// iterate remaining lines of csv
+		for(i = 1; i < temp_csv.length; i++){
+			// create a temporary array for each item of the line
+			temp_arr = temp_csv[i].split(/,/);
+			temp_obj = {};
+			// iterate properties array
+			for(j = 0; j < properties.length; j++){
+				// assign corresponding value to each property
+				temp_obj[properties[j]] = temp_arr[j];
+			}
+			// add converted object to final array
+			arr[i - 1] = temp_obj;
+		}
+		return arr;
 };
