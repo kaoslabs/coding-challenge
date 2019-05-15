@@ -1,4 +1,4 @@
-module.exports.run = function(movies) {
+module.exports.run = async function(movies) {
 /*
 	You are given a list of urls that will be used to search up movies.
 	Make a GET call with axios using the given urls to search each movies.
@@ -27,7 +27,7 @@ module.exports.run = function(movies) {
 	});
 	
 	// axios.all will keep promises in order
-	axios.all(promises)
+	await axios.all(promises)
 		.then(function(results){
 			results.forEach(function(result){
 				obj = {
@@ -38,7 +38,6 @@ module.exports.run = function(movies) {
 				arr.push(obj);
 			});
 		});
-	console.log(arr);
 	// TODO: don't return arr until all async functions finished!!!
 	return arr;
 };
