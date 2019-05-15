@@ -17,30 +17,28 @@ module.exports.run = function(movies) {
 	Write your code below the comment.
 */
 
-	// define vars - apikey required to use omdbapi
 	const axios = require('axios');
-	const key = '&apikey=fc92c626';
-	arr = [];
+	var arr = [],
+		promises = [];
 	
-	// iterate over movies
-	for (i = 0; i < movies.length; i++){
-		// append key to each url
-		temp_url = movies[i] + key;
-		// call axios.get
-		axios.get(temp_url)
-		// upon success add object with desired values to arr
-			.then(function (response){
-				arr[i] = {
-					Title: response.data.Title,
-					Year: response.data.Year,
-					Genre: response.data.Genre
+	// iterate over movies to create a promises array
+	movies.forEach(function(movie){
+		promises.push(axios.get(movie));
+	});
+	
+	// axios.all will keep promises in order
+	axios.all(promises)
+		.then(function(results){
+			results.forEach(function(result){
+				obj = {
+					Title: result.data.Title,
+					Year: result.data.Year,
+					Genre: result.data.Genre
 				};
-			})
-		// upon failure add error message to arr
-			.catch(function (error){
-				arr[i] = error;
+				arr.push(obj);
 			});
-	}
-	// return arr
+		});
+	console.log(arr);
+	// TODO: don't return arr until all async functions finished!!!
 	return arr;
 };
