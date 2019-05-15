@@ -17,4 +17,30 @@ module.exports.run = function(movies) {
 	Write your code below the comment.
 */
 
+	// define vars - apikey required to use omdbapi
+	const axios = require('axios');
+	const key = '&apikey=fc92c626';
+	const arr = [];
+	
+	// iterate over movies
+	for (i = 0; i < movies.length; i++){
+		// append key to each url
+		temp_url = movies[i] + key;
+		// call axios.get
+		axios.get(temp_url)
+		// upon success add object with desired values to arr
+			.then(function (response){
+				arr[i] = {
+					Title: response.data.Title,
+					Year: response.data.Year,
+					Genre: response.data.Genre
+				};
+			})
+		// upon failure add error message to arr
+			.catch(function (error){
+				arr[i] = error;
+			});
+	}
+	// return arr
+	return arr;
 };
