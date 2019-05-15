@@ -20,7 +20,7 @@ module.exports.run = function(movies) {
 	// define vars - apikey required to use omdbapi
 	const axios = require('axios');
 	const key = '&apikey=fc92c626';
-	const arr = [];
+	arr = [];
 	
 	// iterate over movies
 	for (i = 0; i < movies.length; i++){
