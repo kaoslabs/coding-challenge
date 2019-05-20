@@ -9,8 +9,8 @@ Return true if all the g's in the given string are happy, otherwise return false
 
         Write your code below the comment.
 */
-	// add blank to end of str so that regex match works properly
-	str = str + ' ';
+	// add blank to beginning and end of str so that regex match works properly
+	str = ' ' + str + ' ';
 	// use regex to return a solo 'g'
 	var g_arr = str.match(/[^g]g[^g]/);
 	// return false if g_arr has a length
