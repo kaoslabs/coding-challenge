@@ -9,13 +9,12 @@ Return true if all the g's in the given string are happy, otherwise return false
 
         Write your code below the comment.
 */
-	// use regex to return array of all consecutive sets of g
-	g_arr = str.match(/g+/g);
-	// iterate each set
-	for (g of g_arr){
-		// return false if any set has only one g
-		if (g.length == 1) return false;
-	}
+	// add blank to end of str so that regex match works properly
+	str = str + ' ';
+	// use regex to return a solo 'g'
+	var g_arr = str.match(/[^g]g[^g]/);
+	// return false if g_arr has a length
+	if (g_arr) return false;
 	// else return true
 	return true;
 };
